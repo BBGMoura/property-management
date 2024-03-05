@@ -2,7 +2,6 @@ package com.mycompany.propertymanagement.controller;
 
 import com.mycompany.propertymanagement.dto.PropertyDTO;
 import com.mycompany.propertymanagement.service.PropertyService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,4 +19,4 @@ public class PropertyController {
         return propertyDTO;
     }
 
-            }
+}
