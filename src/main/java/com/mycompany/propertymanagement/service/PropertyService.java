@@ -8,5 +8,6 @@ public interface PropertyService {
 
     PropertyDTO saveProperty(PropertyDTO propertyDTO);
     List<PropertyDTO> getAllProperties();
+    PropertyDTO updateProperty(PropertyDTO propertyDTO, Long propertyId);
 
 }

@@ -31,4 +31,11 @@ public class PropertyController {
         return responseEntity;
     }
 
+    @PutMapping("/{propertyId}")
+    public ResponseEntity<PropertyDTO> updateProperty(@RequestBody PropertyDTO propertyDTO, @PathVariable Long propertyId){
+        PropertyDTO updatedDTO = propertyService.updateProperty(propertyDTO, propertyId);
+        ResponseEntity<PropertyDTO> responseEntity = new ResponseEntity<>(updatedDTO, HttpStatus.OK);
+        return responseEntity;
+    }
+
 }
