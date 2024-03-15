@@ -1,5 +1,6 @@
 package com.mycompany.propertymanagement.service.impl;
 
+import com.mycompany.propertymanagement.converter.PropertyConverter;
 import com.mycompany.propertymanagement.dto.PropertyDTO;
 import com.mycompany.propertymanagement.entity.PropertyEntity;
 import com.mycompany.propertymanagement.repository.PropertyRepository;
@@ -10,22 +11,19 @@ import org.springframework.stereotype.Service;
 public class PropertyServiceImpl implements PropertyService {
 
     private PropertyRepository propertyRepository;
+    private PropertyConverter propertyConverter;
 
-    public PropertyServiceImpl(PropertyRepository propertyRepository) {
+    public PropertyServiceImpl(PropertyRepository propertyRepository, PropertyConverter propertyConverter) {
         this.propertyRepository = propertyRepository;
+        this.propertyConverter = propertyConverter;
     }
 
     @Override
     public PropertyDTO saveProperty(PropertyDTO propertyDTO) {
-        PropertyEntity propertyEntity = new PropertyEntity();
-        propertyEntity.setTitle(propertyDTO.getTitle());
-        propertyEntity.setAddress(propertyDTO.getAddress());
-        propertyEntity.setOwnerName(propertyDTO.getOwnerName());
-        propertyEntity.setOwnerEmail(propertyDTO.getOwnerEmail());
-        propertyEntity.setDescription(propertyDTO.getDescription());
-        propertyEntity.setPrice(propertyDTO.getPrice());
+        PropertyEntity propertyEntity = propertyConverter.convertDTOToEntity(propertyDTO);
+        PropertyEntity savedEntity = propertyRepository.save(propertyEntity);
 
-        propertyRepository.save(propertyEntity);
-        return null;
+        propertyDTO = propertyConverter.convertEntityToDTO(savedEntity);
+        return propertyDTO;
     }
 }
