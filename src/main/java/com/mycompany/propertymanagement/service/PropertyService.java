@@ -1,8 +1,6 @@
 package com.mycompany.propertymanagement.service;
 
 import com.mycompany.propertymanagement.dto.PropertyDTO;
-import org.hibernate.mapping.Property;
-
 import java.util.List;
 
 public interface PropertyService {
