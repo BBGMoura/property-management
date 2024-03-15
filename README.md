@@ -5,6 +5,7 @@ This application utilises:
 - Spring Boot
 - Spring Data JPA
 - H2 Database
+- mySQL
 - Project Lombok
 
 This application utilises OOP aswell as a 4 layer application.
@@ -18,6 +19,15 @@ Hibernate is used to map JPA Entities to database records.
 
 In addition, the adaptor factory design pattern is utilised to convert DTOs to Entities and vise versa.
 This is done using a Converter.
+
+## Spring Profiles
+This application consists of 5 different spring profiles for 5 different environments.
+This includes:
+- local
+- dev
+- test
+- acc
+- prod
 
 
 ## API Documentation
