@@ -77,4 +77,8 @@ public class PropertyServiceImpl implements PropertyService {
         return propertyToUpdateDTO;
     }
 
+    @Override
+    public void deleteProperty(Long propertyId) {
+        propertyRepository.deleteById(propertyId);
+    }
 }
