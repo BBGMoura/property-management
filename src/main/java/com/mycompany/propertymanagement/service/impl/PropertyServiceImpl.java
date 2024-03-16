@@ -7,7 +7,6 @@ import com.mycompany.propertymanagement.repository.PropertyRepository;
 import com.mycompany.propertymanagement.service.PropertyService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +25,6 @@ public class PropertyServiceImpl implements PropertyService {
     public PropertyDTO saveProperty(PropertyDTO propertyDTO) {
         PropertyEntity propertyEntity = propertyConverter.convertDTOToEntity(propertyDTO);
         PropertyEntity savedEntity = propertyRepository.save(propertyEntity);
-
         propertyDTO = propertyConverter.convertEntityToDTO(savedEntity);
         return propertyDTO;
     }
@@ -34,19 +32,12 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public List<PropertyDTO> getAllProperties() {
         List<PropertyEntity> listOfProperties = (List<PropertyEntity>) propertyRepository.findAll();
-        List<PropertyDTO> propertyDTOList = new ArrayList<>();
-
-        for(PropertyEntity propertyEntity : listOfProperties) {
-            PropertyDTO dto = propertyConverter.convertEntityToDTO(propertyEntity);
-            propertyDTOList.add(dto);
-        }
-        return propertyDTOList;
+        return propertyConverter.convertEntityListToDTOList(listOfProperties);
     }
 
     @Override
     public PropertyDTO updateProperty(PropertyDTO propertyDTO, Long propertyId) {
         Optional<PropertyEntity> optionalEntity = propertyRepository.findById(propertyId);
-        PropertyDTO propertyToUpdateDTO = null;
         if(optionalEntity.isPresent()) {
             PropertyEntity propertyEntity = optionalEntity.get();
             propertyEntity.setTitle(propertyDTO.getTitle());
@@ -57,24 +48,21 @@ public class PropertyServiceImpl implements PropertyService {
             propertyEntity.setDescription(propertyDTO.getDescription());
 
             PropertyEntity savedPropertyEntity = propertyRepository.save(propertyEntity);
-            propertyToUpdateDTO = propertyConverter.convertEntityToDTO(savedPropertyEntity);
-            return propertyToUpdateDTO;
+            return propertyConverter.convertEntityToDTO(savedPropertyEntity);
         }
-        return propertyToUpdateDTO;
+        return null;
     }
 
     @Override
     public PropertyDTO updatePropertyDescription(PropertyDTO propertyDTO, Long propertyId) {
         Optional<PropertyEntity> optionalEntity = propertyRepository.findById(propertyId);
-        PropertyDTO propertyToUpdateDTO = null;
-        if(optionalEntity.isPresent()) {
+        if (optionalEntity.isPresent()) {
             PropertyEntity propertyEntity = optionalEntity.get();
             propertyEntity.setDescription(propertyDTO.getDescription());
             PropertyEntity savedPropertyEntity = propertyRepository.save(propertyEntity);
-            propertyToUpdateDTO = propertyConverter.convertEntityToDTO(savedPropertyEntity);
-            return propertyToUpdateDTO;
+            return propertyConverter.convertEntityToDTO(savedPropertyEntity);
         }
-        return propertyToUpdateDTO;
+        return null;
     }
 
     @Override
