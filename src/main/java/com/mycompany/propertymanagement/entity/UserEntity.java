@@ -2,12 +2,14 @@ package com.mycompany.propertymanagement.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="User")
+@Table(name="users")
 @Getter
 @Setter
+@NoArgsConstructor
 public class UserEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
