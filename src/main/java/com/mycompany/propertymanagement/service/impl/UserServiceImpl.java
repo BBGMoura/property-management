@@ -7,6 +7,8 @@ import com.mycompany.propertymanagement.repository.UserRepository;
 import com.mycompany.propertymanagement.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -27,6 +29,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO login(String email, String password) {
+        Optional<UserEntity> userEntity = userRepository.findByEmailAndPassword(email, password);
+        if(userEntity.isPresent()){
+            return userConverter.convertEntityToDTO(userEntity.get());
+        }
         return null;
     }
 }
