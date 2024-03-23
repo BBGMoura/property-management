@@ -56,10 +56,7 @@ public class UserServiceImpl implements UserService {
 
     private List<ErrorModel> createError(String code, String message){
         List<ErrorModel> errorModelList = new ArrayList<>();
-        ErrorModel errorModel = new ErrorModel();
-        errorModel.setCode(code);
-        errorModel.setMessage(message);
-        errorModelList.add(errorModel);
+        errorModelList.add( new ErrorModel(code, message));
         return errorModelList;
     }
 }
