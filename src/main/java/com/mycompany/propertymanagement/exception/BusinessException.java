@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class BusinessException extends Exception{
+    
     private List<ErrorModel> errors;
 
     public BusinessException(List<ErrorModel> errors){
