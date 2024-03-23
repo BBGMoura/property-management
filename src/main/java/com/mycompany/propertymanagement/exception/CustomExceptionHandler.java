@@ -11,7 +11,6 @@ import java.util.List;
 public class CustomExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<List<ErrorModel>> handleBusinessException(BusinessException bEx) {
-        System.out.println("BusinessException is thrown");
         return new ResponseEntity<>(bEx.getErrors(), HttpStatus.BAD_REQUEST);
     }
 }
