@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BusinessException extends Exception {
+public class BusinessException extends RuntimeException {
 
     private List<ErrorModel> errors;
 
