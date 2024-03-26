@@ -2,6 +2,7 @@ package com.mycompany.propertymanagement.controller;
 
 import com.mycompany.propertymanagement.dto.UserDTO;
 import com.mycompany.propertymanagement.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserDTO> saveProperty(@RequestBody UserDTO userDTO){
+    public ResponseEntity<UserDTO> saveProperty(@Valid @RequestBody UserDTO userDTO){
         UserDTO savedUserDTO = userService.register(userDTO);
         return new ResponseEntity<>(savedUserDTO, HttpStatus.CREATED);
     }
